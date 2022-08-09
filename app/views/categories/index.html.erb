@@ -1,0 +1,32 @@
+
+<div class="container">
+  <%=link_to "Add New Category",  new_category_path,  class:"btn btn-primary" if policy(Category).new?%>
+<%@categories.each do |category|%>
+<div class="row">
+    <div class="col-md-4 my-4 id='category-show-<%=category.id.to_s%>">
+      <div class="bg-image hover-overlay shadow-1-strong rounded ripple" data-mdb-ripple-color="light">
+          <%=image_tag category.avatar ,width: "400px", height: "150px" if category.avatar.attached?%>
+
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+      </div>
+    </div>
+
+    <div class="col-md-8 mb-4">
+      <h4><%=category.name%></h4>
+      <p>
+       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ratione
+       necessitatibus itaque error alias repellendus nemo reiciendis aperiam quisquam
+       minus ipsam reprehenderit commodi ducimus, in dicta aliquam eveniet dignissimos
+       magni.
+       </p>
+
+      <%=link_to "Show", category_path(category),  class:"btn btn-primary"%>
+      <%=link_to "Edit this Category", edit_category_path(category) ,  class:"btn btn-warning" if policy(category).edit?%>
+      <%= link_to "Destroy", category_path(category), method: :delete, class:"btn btn-outline-danger" if policy(category).destroy?%>
+
+      </div>
+</div>
+<% end %>
+
+</div>
